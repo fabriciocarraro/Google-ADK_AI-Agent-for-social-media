@@ -11,7 +11,9 @@ O objetivo deste projeto é simplificar e automatizar o processo de criação de
 3.  **Escreve:** Gera um rascunho de post para o Instagram, seguindo o plano e adotando um tom engajador e informativo.
 4.  **Revisa:** Avalia o rascunho quanto à clareza, concisão, correção e adequação ao público-alvo, sugerindo melhorias ou aprovando para publicação.
 
-![Fluxograma](fluxograma.png)
+<p align="center">
+  <img src="fluxograma.png" alt="Fluxograma dos Agentes" width="50%">
+</p>
 
 ## 🧠 Fluxo detalhado dos Agentes
 
