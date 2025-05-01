@@ -12,7 +12,7 @@ O objetivo deste projeto é simplificar e automatizar o processo de criação de
 4.  **Revisa:** Avalia o rascunho quanto à clareza, concisão, correção e adequação ao público-alvo, sugerindo melhorias ou aprovando para publicação.
 
 <p align="center">
-  <img src="fluxograma.png" alt="Fluxograma dos Agentes" width="50%">
+  <img src="fluxograma.png" alt="Fluxograma dos Agentes" width="65%">
 </p>
 
 ## 🧠 Fluxo detalhado dos Agentes
