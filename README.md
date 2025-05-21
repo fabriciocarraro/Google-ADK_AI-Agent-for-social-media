@@ -1,5 +1,7 @@
 # Sistema Multi-Agente (Google ADK & Gemini) para criação de posts de Instagram
 
+Tutorial em texto: 
+
 Este repositório contém um script Python que utiliza o Google Agent Development Kit (ADK) e modelos Gemini para criar posts para o Instagram de forma automatizada, baseados em um tópico fornecido pelo usuário. O sistema emprega uma arquitetura multi-agente, onde cada agente tem uma responsabilidade específica no processo de criação de conteúdo.
 
 ## 🚀 Descrição resumida
@@ -8,8 +10,7 @@ O objetivo deste projeto é simplificar e automatizar o processo de criação de
 
 1.  **Pesquisa:** Busca as notícias e lançamentos mais recentes e relevantes sobre o tópico.
 2.  **Planeja:** Analisa os resultados da pesquisa, identifica os pontos mais importantes e cria um plano de conteúdo para um post.
-3.  **Escreve:** Gera um rascunho de post para o Instagram, seguindo o plano e adotando um tom engajador e informativo.
-4.  **Revisa:** Avalia o rascunho quanto à clareza, concisão, correção e adequação ao público-alvo, sugerindo melhorias ou aprovando para publicação.
+3.  **Escreve:** Gera um post para o Instagram, seguindo o plano e adotando um tom engajador e informativo.
 
 <p align="center">
   <img src="fluxograma.png" alt="Fluxograma dos Agentes" width="60%">
@@ -17,7 +18,7 @@ O objetivo deste projeto é simplificar e automatizar o processo de criação de
 
 ## 🧠 Fluxo detalhado dos Agentes
 
-O sistema opera como uma linha sequencial de agentes onde cada agente contribui com sua especialidade:
+O sistema opera como uma linha sequencial de 3 agentes, onde cada agente contribui com sua especialidade:
 
 1.  **Agente Buscador (`agente_buscador`):**
     *   **Entrada:** O tópico buscado pelo usuário e a data de hoje.
@@ -31,13 +32,8 @@ O sistema opera como uma linha sequencial de agentes onde cada agente contribui 
 
 3.  **Agente Redator (`agente_redator`):**
     *   **Entrada:** O tópico buscado pelo usuário e o plano detalhado gerado pelo Agente Planejador.
-    *   **Tarefa:** Escreve um rascunho de post para Instagram, seguindo o plano, usando linguagem engajadora e simples e incluindo hashtags.
-    *   **Saída:** O rascunho do post.
-
-4.  **Agente Revisor (`agente_revisor`):**
-    *   **Entrada:** O tópico buscado pelo usuário e o rascunho gerado pelo Agente Redator.
-    *   **Tarefa:** Revisa o rascunho verificando clareza, concisão, correção gramatical e tom (adequado para público jovem, 18-30 anos).
-    *   **Saída:** Aprovação ("O rascunho está ótimo e pronto para publicar!") ou feedback com sugestões de melhoria.
+    *   **Tarefa:** Escreve um post para Instagram, seguindo o plano, usando linguagem engajadora e simples e incluindo hashtags.
+    *   **Saída:** O post final.
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -49,7 +45,6 @@ O sistema opera como uma linha sequencial de agentes onde cada agente contribui 
     *   `google_search`: Ferramenta integrada para realizar buscas na web.
 *   **Google Gemini API:** Acesso aos modelos de linguagem da Google (`gemini-2.0-flash`, `gemini-2.5-pro-preview-03-25`).
 *   **Google Colab:** Ambiente de notebook recomendado para execução (devido ao uso de `userdata` e `IPython.display`).
-*   **Bibliotecas:** `os`, `google.colab.userdata`, `google.adk`, `IPython.display`, `warnings`, `datetime`, `textwrap`.
 
 ## ⚙️ Instalação e Configuração
 
@@ -61,21 +56,21 @@ O sistema opera como uma linha sequencial de agentes onde cada agente contribui 
     *Observação:* Se estiver rodando diretamente no Google Colab, você pode simplesmente criar um novo notebook e colar o código.
 
 2.  **Instalar Dependências:**
-    A principal dependência é o `google-adk`. Execute a célula no notebook que contém:
+    As principais dependências são o `google-adk` e o `google-genai`. Execute a célula no notebook que contém:
     ```python
-    !pip install -q google-adk
+    !pip install -q google-genai google-adk
     ```
 
 3.  **Configurar a API Key:**
     *   No Google Colab, vá até a seção "Secrets" (ícone de chave no painel esquerdo).
-    *   Crie um novo secret chamado `GEMINI_API_KEY`.
+    *   Crie um novo secret chamado `GOOGLE_API_KEY`.
     *   Cole sua API Key do Google Gemini no campo "Value".
     *   Certifique-se de que a opção "Notebook access" esteja habilitada para este secret.
-    *   O script usará `userdata.get('GEMINI_API_KEY')` para buscar a chave com segurança, e irá setá-la como chave de ambiente em `os.environ["GOOGLE_API_KEY"]`.
+    *   O script usará `userdata.get('GOOGLE_API_KEY')` para buscar a chave com segurança, e irá setá-la como chave de ambiente em `os.environ["GOOGLE_API_KEY"]`.
 
 ## ⚠️ Observações
 
 *   **Custos da API:** O uso das APIs do Google Gemini pode incorrer em custos dependendo do volume de uso. Consulte a [política de preços do Gemini](https://ai.google.dev/pricing).
-*   **Qualidade da Saída:** A qualidade dos resultados depende da capacidade dos modelos Gemini, da precisão dos resultados da busca do Google e da clareza do tópico fornecido. Optei por escolher um modelo menor e mais rápido (`gemini-2.0-flash`) para as partes de busca de informações, e um modelo mais poderoso (`gemini-2.5-pro-preview-03-25`) para a geração e revisão do post.
+*   **Qualidade da Saída:** A qualidade dos resultados depende da capacidade dos modelos Gemini, da precisão dos resultados da busca do Google e da clareza do tópico fornecido. Optei por escolher um modelo menor e mais rápido (`gemini-2.0-flash`) para as partes de busca de informações, e um modelo mais poderoso (`gemini-2.5-pro-preview-03-25`) para a geração do post.
 *   **Dependências Externas:** O funcionamento correto depende da disponibilidade e performance das APIs do Google (Gemini e Search).
 *   **Adaptação:** As instruções (`instruction`) de cada agente podem ser modificadas para ajustar o comportamento, o tom ou o foco do sistema.
